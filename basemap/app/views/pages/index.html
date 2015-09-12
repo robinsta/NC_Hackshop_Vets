@@ -12,6 +12,7 @@
         margin: 0;
         padding: 0;
       }
+      
       body {
         background-color: #FFF;
         overflow: hidden;
@@ -19,20 +20,31 @@
       }
     </style>
     <script src="http://js.arcgis.com/3.14/"></script>
-    <script>
-      var map;
+        <script>
+      require([
 
-      require(["esri/map", "dojo/domReady!"], function(Map) {
-        map = new Map("map", {
-          basemap: "gray",  //For full list of pre-defined basemaps, navigate to http://arcg.is/1JVo6Wd
-          center: [-78.638, 35.780], // longitude, latitude
-          zoom: 14	
-        });
+        "esri/map",
+        "esri/dijit/Search",
+        "dojo/domReady!"
+
+      ], function (Map, Search) {
+         var map = new Map("map", {
+            basemap: "gray",
+            center: [-78.638, 35.780], // longitude, latitude
+          zoom: 14 
+         });
+
+         var s = new Search({
+            map: map
+         }, "search");
+         s.startup();
+
       });
     </script>
   </head>
 
   <body>
+    <div id="search"></div>
     <div id="map"></div>
   </body>
 </html>
