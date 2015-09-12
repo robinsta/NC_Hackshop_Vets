@@ -24,14 +24,16 @@
       require([
 
         "esri/map",
-        "esri/dijit/Search",
+        "esri/dijit/Search", 
+        "esri/layers/FeatureLayer",
+        "esri/renderers/ClassBreaksRenderer",
         "dojo/domReady!"
 
-      ], function (Map, Search) {
+      ], function (Map, Search, FeatureLayer, ClassBreaksRenderer) {
          var map = new Map("map", {
             basemap: "gray",
             center: [-78.638, 35.780], // longitude, latitude
-          zoom: 14 
+          zoom: 9 
          });
 
          var s = new Search({
@@ -39,7 +41,12 @@
          }, "search");
          s.startup();
 
+         var mapservice = new FeatureLayer("http://services5.arcgis.com/P9MDQiTYOozjFRjq/arcgis/rest/services/vets/FeatureServer/0");
+
+         map.addLayer(mapservice);
+
       });
+
     </script>
   </head>
 
